@@ -1,21 +1,73 @@
-Dette projekt implementerer en AI-baseret research agent, som kan finde relevante forskningsartikler baseret på en brugerforespørgsel.
+# AI Research Agent
+The agent can:
+- Understand a request (e.g. subject, year or citations)
+- Retrieve data from an external API (openAlex)
+- Filtrate results by demands
+- Choose the most relevant paper
+- Give a short description of the paper
 
-Agenten kan:
+The Agent doesn't just use LLM-knowledge, but is based on actual data from the external API source (openAlex), which reduces hallucinations
 
-forstå en forespørgsel (fx emne, år og citationskrav)
-hente data fra en ekstern API
-filtrere resultater efter krav
-vælge den mest relevante artikel
-give en kort, evidensbaseret forklaring
-
-Agenten bruger ikke kun LLM-viden, men er baseret på faktiske data fra en ekstern kilde(openAlex), hvilket reducerer hallucination.
+The LLM is created using Mistral's API and the research papers are retrieved from the openAlex library. 
 ___
 
-#Tech Stack
-Python 3.11 (64-bit)
-AutoGen (0.3.1 + kursus-fork)
-Mistral AI (open-mistral-nemo)
-OpenAlex API (research papers)
-python-dotenv
-requests
+# The Agent workflow explained
 
+
+
+
+
+# Tech Stack
+Python 3.11 (64-bit)  
+AutoGen (0.3.1 + kursus-fork)  
+Mistral AI (open-mistral-nemo)  
+OpenAlex API (research papers)  
+python-dotenv  
+requests   
+
+--- 
+# Setup
+### **1. Clone Project**
+      git clone <The projects url found on the project page>
+
+### **2. Create Virutal environment** 
+1. Make sure you are in the root of the project and run:
+
+       py -3.11 -m venv .venv
+  
+2. Activate the virutal environment
+   
+       .venv\Scripts\activate
+
+### **3. Install dependencies***
+    pip install --upgrade pip setuptools wheel
+    pip install autogen==0.3.1
+    pip install git+https://github.com/patrickstolc/autogen.git@0.2
+    pip install mistralai==1.2.3
+    pip install python-dotenv requests 
+
+### **4. Configure API key***
+1. Go to  [Mistral AI](https://mistral.ai) and retrive your API-key (requires a login to Mistral)
+2. Create a .env file and add your key (API=YourKey)
+
+---
+# Running the project
+run the project using:   
+
+    python main.py
+
+Test with an output like:  
+"machine learning 2015 1000 citations"
+
+---
+# Running the evaluator   
+    python -m app.evaluation.evaluator
+
+This will:   
+- Run 10 test prompts (located in evaluation -> test_cases.py  
+- Evaluate the agents performance  
+- Show the results like relevance and correctness
+
+
+
+    
