@@ -13,13 +13,26 @@ ___
 
 # The Agent workflow explained
 
+1. Parsing (code)
+      - Extracts the topic, publication year, and citation requirements from the user input
 
+3. Tool (OpenAlex API)
+      - Retrieves research papers from the external API
+
+3. Filtering (code)
+      - Removes papers that do not meet the specified constraints
+
+4. Selection (code)
+      - Selects the best paper (highest citation count)
+
+5. Explanation (LLM)
+      - Generates a short explanation of why the paper is relevant
 
 
 
 # Tech Stack
 Python 3.11 (64-bit)  
-AutoGen (0.3.1 + kursus-fork)  
+AutoGen (0.3.1)  
 Mistral AI (open-mistral-nemo)  
 OpenAlex API (research papers)  
 python-dotenv  
@@ -42,11 +55,10 @@ requests
 ### **3. Install dependencies***
     pip install --upgrade pip setuptools wheel
     pip install autogen==0.3.1
-    pip install git+https://github.com/patrickstolc/autogen.git@0.2
     pip install mistralai==1.2.3
     pip install python-dotenv requests 
 
-### **4. Configure API key***
+### **4. Configure API key**
 1. Go to  [Mistral AI](https://mistral.ai) and retrive your API-key (requires a login to Mistral)
 2. Create a .env file and add your key (API=YourKey)
 
